@@ -1,0 +1,47 @@
+{
+  "name": "template",
+  "productName": "template",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "src/index.js",
+  "scripts": {
+    "tw": "tailwindcss -i ./src/renderer/input.css -o ./src/renderer/index.css --watch",
+    "start": "electron .",
+    "dist:portable": "electron-builder --win portable --x64",
+    "dist:zip": "electron-builder --win zip --x64",
+    "postinstall": "electron-builder install-app-deps",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "build": {
+    "extraResources": null,
+    "icon": "img/ict_logo_square.ico",
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true
+    }
+  },
+  "keywords": [],
+  "author": {
+    "name": "ICT AG"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@electron/fuses": "^1.8.0",
+    "@eslint/js": "^9.39.1",
+    "daisyui": "^5.5.0",
+    "electron": "39.1.2",
+    "electron-builder": "^26.4.0",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}

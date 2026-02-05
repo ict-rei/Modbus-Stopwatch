@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@source './*.{html,js}';
+@plugin 'daisyui' {
+  themes: ict;
+}
+
+.titlebar {
+  height: 32px;
+  background: var(--color-secondary);
+  color: var(--color-info);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  app-region: drag;
+}
+
+@plugin 'daisyui/theme' {
+  name: "ict";
+  default: true;
+  color-scheme: dark;
+
+  --color-primary: #db0031;
+  --color-secondary: #1a171b;
+  --color-neutral: oklch(0.37 0.013 285.805);
+  --color-neutral-content: oklch(0.37 0.013 285.805);
+  --color-accent: oklch(0.6888 0.226797 22.0288);
+  --color-info: oklch(0.922 0 0);
+  --color-info-content: #1a171b;
+
+  /* border radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  /* base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* border size */
+  --border: 1px;
+
+  /* effects */
+  --depth: 1;
+  --noise: 0;
+}
