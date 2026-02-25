@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/x-icon" href="./ict_logo_square.ico" />
+    <title>Leaderboard</title>
+  </head>
+  <body data-role="host" data-show-created-at="false">
+    <!-- Logo top-left -->
+    <img id="logo" class="logo" src="default/logo.png" />
+
+    <div class="app">
+      <header>
+        <h1 contenteditable="true" spellcheck="false">Leaderboard</h1>
+        <div class="controls">
+          <button id="exportCsv" class="btn">Export CSV</button>
+          <button id="clearAll" class="btn">Clear All</button>
+        </div>
+      </header>
+      <div class="wrapper">
+        <table class="board">
+          <thead>
+            <tr>
+              <th id="thRank" class="rank">#</th>
+              <th id="thTime">Time</th>
+              <th>Name</th>
+              <th id="thCreatedAt" class="col-createdAt">Created At</th>
+              <th id="thActions" class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+    <dialog id="settingsDialog">
+      <div id="settingsHeader" class="dlg-header">
+        <div>Scoreboard Settings</div>
+        <button class="btn" id="btnCloseSettings" type="button">✕</button>
+      </div>
+
+      <div class="dlg-body">
+        <div>Logo</div>
+
+        <div class="dlg-grid-2">
+          <div class="field">
+            <label class="chk" for="showLogo"> Show logo </label>
+            <input id="showLogo" type="checkbox" />
+          </div>
+          <div class="field">
+            <form id="logoForm">
+              <input id="logoInput" name="file" type="file" accept="image/*" />
+              <button type="submit">Upload</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="dlg-grid-3">
+          <div class="field">
+            <label id="logoXLabel" for="logoX">Logo X (%)</label>
+            <input id="logoX" type="range" min="0" max="100" step="1" />
+          </div>
+
+          <div class="field">
+            <label id="logoYLabel" for="logoY">Logo Y (%)</label>
+            <input id="logoY" type="range" min="0" max="100" step="1" />
+          </div>
+
+          <div class="field">
+            <label id="logoSizeLabel" for="logoSize">Logo width (px)</label>
+            <input id="logoSize" type="range" min="40" max="1000" step="1" />
+          </div>
+        </div>
+        <hr />
+
+        <div>Background Image</div>
+        <div class="dlg-grid-2">
+          <div class="field">
+            <label class="chk" for="showBg"> Show image </label>
+            <input id="showBg" type="checkbox" />
+          </div>
+          <div class="field">
+            <form id="bgForm">
+              <input id="bgInput" name="file" type="file" accept="image/*" />
+              <button type="submit">Upload</button>
+            </form>
+          </div>
+        </div>
+
+        <hr />
+        <div>Colors</div>
+        <div id="colorSettings" class="dlg-grid-5">
+          <div class="field">
+            <label for="bgColor">Background</label>
+            <input id="bgColor" type="color" alpha />
+          </div>
+
+          <div class="field">
+            <label for="tableColor">Table</label>
+            <input id="tableColor" type="color" />
+          </div>
+
+          <div class="field">
+            <label for="inputColor">Input</label>
+            <input id="inputColor" type="color" />
+          </div>
+
+          <div class="field">
+            <label for="textColor">Text</label>
+            <input id="textColor" type="color" />
+          </div>
+
+          <div class="field">
+            <label for="borderColor">Border</label>
+            <input id="borderColor" type="color" />
+          </div>
+        </div>
+        <hr />
+        <div>Misc</div>
+        <div class="dlg-grid-3">
+          <div class="field">
+            <label for="showCreatedAt">Show created at</label>
+            <input id="showCreatedAt" type="checkbox" />
+          </div>
+
+          <div class="field">
+            <label for="isClient">Client mode</label>
+            <input id="isClient" type="checkbox" />
+          </div>
+
+          <div class="field">
+            <label for="clientMaxLines">Max lines (client)</label>
+            <input id="clientMaxLines" type="number" value="10" min="1" />
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="./leaderboard.js"></script>
+  </body>
+</html>

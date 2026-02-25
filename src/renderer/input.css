@@ -1,45 +1,62 @@
+/* stylelint-disable at-rule-no-unknown */
 @import "tailwindcss";
 @source './*.{html,js}';
 @plugin 'daisyui' {
-  themes: ict;
+  themes: ICT_AG;
 }
 
 .titlebar {
   height: 32px;
   background: var(--color-secondary);
   color: var(--color-info);
+  font-family: var(--font-sans);
   display: flex;
   justify-content: center;
   align-items: center;
   app-region: drag;
 }
 
-@plugin 'daisyui/theme' {
-  name: "ict";
+:focus {
+  outline: none !important;
+  outline-offset: 0 !important;
+}
+
+@plugin "daisyui/theme" {
+  name: "ICT_AG";
   default: true;
-  color-scheme: dark;
+  prefersdark: true;
+  color-scheme: "dark";
 
-  --color-primary: #db0031;
-  --color-secondary: #1a171b;
-  --color-neutral: oklch(0.37 0.013 285.805);
-  --color-neutral-content: oklch(0.37 0.013 285.805);
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(87% 0 0);
+  --color-base-300: oklch(70% 0 0);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(0.5629 0.226797 22.0288);
+  --color-primary-content: oklch(97% 0 0);
+  --color-secondary: oklch(0.2098 0.009 317.69);
+  --color-secondary-content: oklch(97% 0 0);
   --color-accent: oklch(0.6888 0.226797 22.0288);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(0.3211 0 0);
+  --color-neutral-content: oklch(97% 0 0);
   --color-info: oklch(0.922 0 0);
-  --color-info-content: #1a171b;
-
-  /* border radius */
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
   --radius-selector: 1rem;
-  --radius-field: 0.25rem;
-  --radius-box: 0.5rem;
-
-  /* base sizes */
+  --radius-field: 0.75rem;
+  --radius-box: 0.75rem;
   --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-
-  /* border size */
+  --size-field: 0.21875rem;
   --border: 1px;
-
-  /* effects */
   --depth: 1;
   --noise: 0;
 }

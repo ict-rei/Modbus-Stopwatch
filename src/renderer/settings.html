@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings</title>
+    <style></style>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="bg-neutral flex h-dvh flex-col overflow-hidden">
+    <div id="titlebar" class="titlebar">Settings</div>
+    <div class="m-auto w-full flex min-h-0 grow overflow-y-auto">
+      <div
+        id="main"
+        class="relative flex flex-1 w-full justify-center items-center"
+      >
+        <div class="mx-5 bg-neutral text-neutral-content">
+          <div>
+            <fieldset class="border border-base-300 p-2 rounded-lg">
+              <legend
+                class="fieldset-legend text-neutral-content ml-1 px-1 pb-0"
+              >
+                Modbus
+              </legend>
+              <div>
+                Status:
+                <div class="pb-1 inline-grid *:[grid-area:1/1]">
+                  <div class="status status-warning animate-ping"></div>
+                  <div class="status status-warning"></div>
+                </div>
+              </div>
+              <div class="flex gap-2 items-end">
+                <fieldset class="fieldset w-full">
+                  <legend
+                    class="fieldset-legend text-neutral-content ml-2 py-0"
+                  >
+                    IP
+                  </legend>
+                  <input
+                    id="modbusIp"
+                    type="text"
+                    class="input text-info-content"
+                  />
+                </fieldset>
+                <fieldset class="fieldset">
+                  <legend
+                    class="fieldset-legend text-neutral-content ml-2 py-0"
+                  >
+                    Port
+                  </legend>
+                  <input
+                    id="modbusPort"
+                    type="number"
+                    class="input text-info-content"
+                  />
+                </fieldset>
+                <fieldset class="fieldset">
+                  <legend
+                    class="fieldset-legend text-neutral-content ml-2 py-0"
+                  >
+                    Input No.
+                  </legend>
+                  <input
+                    id="modbusAddr"
+                    type="number"
+                    class="input text-info-content"
+                  />
+                </fieldset>
+                <button id="modbusConnect" class="btn btn-primary my-1">
+                  Connect
+                </button>
+              </div>
+            </fieldset>
+            <fieldset
+              class="grid grid-cols-3 gap-5 border border-base-300 p-3 rounded-lg"
+            >
+              <legend
+                class="fieldset-legend text-neutral-content ml-1 px-1 pb-0"
+              >
+                Timer
+              </legend>
+              <div class="flex flex-col justify-items-center ml-2">
+                <div
+                  class="text-neutral-content text-xs self-center font-semibold mb-1"
+                >
+                  Background
+                </div>
+                <input
+                  id="bgColor"
+                  type="color"
+                  class="input self-center p-1 w-16 h-10"
+                />
+              </div>
+              <div class="flex flex-col justify-items-center">
+                <div
+                  class="text-neutral-content text-xs self-center font-semibold mb-1"
+                >
+                  Timer
+                </div>
+                <input
+                  id="timerColor"
+                  type="color"
+                  class="input self-center p-1 w-16 h-10"
+                />
+              </div>
+              <div class="flex flex-col justify-items-center">
+                <div
+                  class="text-neutral-content text-xs self-center font-semibold mb-1"
+                >
+                  Show ms
+                </div>
+                <input
+                  id="showMs"
+                  type="checkbox"
+                  class="checkbox self-center checkbox-primary"
+                />
+                <div
+                  class="mt-1 flex flex-col w-full justify-items-center col-span-full"
+                >
+                  <div
+                    class="text-neutral-content text-xs self-center font-semibold mb-1"
+                  >
+                    Opacity
+                  </div>
+                  <input
+                    id="msOpacity"
+                    type="range"
+                    min="1"
+                    max="100"
+                    class="range range-xs w-full range-primary"
+                  />
+                </div>
+              </div>
+              <div
+                id="divSize"
+                class="flex flex-col w-full justify-items-center col-span-full"
+              >
+                <div
+                  class="text-neutral-content text-xs self-center font-semibold mb-1"
+                >
+                  Size
+                </div>
+                <input
+                  id="timerSize"
+                  type="range"
+                  min="1"
+                  max="23"
+                  class="range range-sm w-full range-primary"
+                />
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./settings.js"></script>
+  </body>
+</html>

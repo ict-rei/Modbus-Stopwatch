@@ -1,9 +1,9 @@
 {
-  "name": "template",
-  "productName": "template",
+  "name": "modbus-stopwatch",
+  "productName": "Modbus Stopwatch",
   "version": "1.0.0",
-  "description": "My Electron application description",
-  "main": "src/index.js",
+  "description": "Stoppuhr mit Scoreboard",
+  "main": "src/main.js",
   "scripts": {
     "tw": "tailwindcss -i ./src/renderer/input.css -o ./src/renderer/index.css --watch",
     "start": "electron .",
@@ -14,7 +14,15 @@
     "format": "prettier --write ."
   },
   "build": {
-    "extraResources": null,
+    "files": [
+      "!config.json"
+    ],
+    "extraResources": [
+      {
+        "from": "leaderboard",
+        "to": "leaderboard"
+      }
+    ],
     "icon": "img/ict_logo_square.ico",
     "electronFuses": {
       "runAsNode": false,
@@ -30,10 +38,16 @@
     "name": "ICT AG"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^5.2.1",
+    "modbus-serial": "^8.0.23",
+    "multer": "^2.0.2",
+    "ws": "^8.19.0"
+  },
   "devDependencies": {
     "@electron/fuses": "^1.8.0",
     "@eslint/js": "^9.39.1",
+    "@tailwindcss/cli": "^4.1.17",
     "daisyui": "^5.5.0",
     "electron": "39.1.2",
     "electron-builder": "^26.4.0",
@@ -41,7 +55,6 @@
     "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
-    "@tailwindcss/cli": "^4.1.17",
     "tailwindcss": "^4.1.17"
   }
 }

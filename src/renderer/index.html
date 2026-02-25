@@ -3,92 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello World!</title>
+    <title>Stopwatch</title>
+    <style>
+      :root {
+        --bg: #333333;
+        --text: #ffffff;
+        --fontSize: 15vw;
+        --msOpacity: 1;
+        --fontFamily:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      #main {
+        background-color: var(--bg);
+      }
+
+      .timer {
+        color: var(--text);
+        font-size: var(--fontSize);
+        line-height: 1;
+        text-align: center;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        font-family: var(--fontFamily);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .timer .ms {
+        font-size: 0.6em;
+        opacity: var(--msOpacity);
+      }
+    </style>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body class="bg-neutral flex h-dvh flex-col overflow-hidden">
-    <div class="titlebar"></div>
-    <nav class="bg-secondary z-10 flex flex-col">
-      <span
-        id="logo"
-        data-url="https://www.ict.de"
-        class="fixed top-7 left-5 z-11 flex cursor-pointer items-center"
-      >
-        <img src="../../img/ICT-Logo-weiss-rot-RGB.png" class="mr-3 h-8" />
-      </span>
-      <div class="relative flex flex-row w-full h-14 gap-3 justify-center">
-        <!-- additional top bar content -->
-
-        <label class="absolute right-0 bottom-2 mr-4">
-          <div
-            id="info-tooltip"
-            class="tooltip tooltip-left tooltip-info z-12"
-            data-tip="Hier klicken für mehr Informationen! →"
-          >
-            <svg
-              id="info"
-              onclick="panel_info.showModal()"
-              class="animate-[bounce_1s_5.5] cursor-pointer"
-              xmlns="http://www.w3.org/2000/svg"
-              width="33"
-              height="33"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#FFFFFF"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-          </div>
-        </label>
-        <dialog id="panel_info" class="modal">
-          <div
-            class="absolute modal-box bg-neutral text-info top-[max(10vh,100px)] p-0 w-fit min-w-[50vw] lg-min-w-[40vw] max-w-[80vw] xl:max-w-[60vw] 2xl:max-w-[50vw] max-h-[80vh]"
-          >
-            <div class="flex items-center gap-2 bg-secondary p-4">
-              <h3 class="relative text-2xl font-bold flex gap-2">
-                <svg
-                  class="relative w-6 h-6 top-1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#fff"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5M9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3M12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2"
-                  />
-                </svg>
-                Was bin ich?
-              </h3>
-              <form method="dialog" class="ml-auto">
-                <button
-                  class="btn btn-sm btn-circle btn-ghost hover:bg-neutral"
-                >
-                  ✕
-                </button>
-              </form>
-            </div>
-            <div class="p-4 max-h-[70vh] overflow-y-auto overscroll-contain">
-              <div class="mb-2">
-                <!-- Infobox -->
-              </div>
-            </div>
-          </div>
-          <form method="dialog" class="modal-backdrop">
-            <button></button>
-          </form>
-        </dialog>
-      </div>
-    </nav>
+    <div id="titlebar" class="titlebar"></div>
     <div class="m-auto w-full flex min-h-0 grow overflow-y-auto">
       <div
         id="main"
         class="relative flex flex-1 w-full justify-center items-center"
       >
         <!-- main content -->
+        <div id="timer" class="timer">
+          <div id="ms"></div>
+        </div>
       </div>
     </div>
     <script src="./renderer.js"></script>
