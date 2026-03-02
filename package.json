@@ -2,7 +2,7 @@
   "name": "modbus-stopwatch",
   "productName": "Modbus Stopwatch",
   "version": "1.0.0",
-  "description": "Stoppuhr mit Scoreboard",
+  "description": "Stoppuhr mit Leaderboard",
   "main": "src/main.js",
   "scripts": {
     "tw": "tailwindcss -i ./src/renderer/input.css -o ./src/renderer/index.css --watch",
