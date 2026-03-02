@@ -571,15 +571,16 @@ window.addEventListener("keydown", (e) => {
     if (dlg.hasAttribute("open")) closeSettingsDialog();
     else openSettingsDialog();
   }
-  // ESC closes dialog
-  if (e.key === "Escape" && dlg.hasAttribute("open")) {
-    e.preventDefault();
-    closeSettingsDialog();
-  }
 });
 
 btnCloseSettings.addEventListener("click", () => {
   if (dlg.hasAttribute("open")) {
+    closeSettingsDialog();
+  }
+});
+
+dlg.addEventListener("click", (e) => {
+  if (e.target === dlg) {
     closeSettingsDialog();
   }
 });

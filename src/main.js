@@ -51,8 +51,6 @@ const cfg = (() => {
         showMs: true,
         "--msOpacity": 1,
         "--fontSize": "12vw",
-        "--fontFamily":
-          'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
         "--text": "#ffffff",
         "--bg": "#333333",
       },
@@ -68,10 +66,10 @@ const cfg = (() => {
         "--panel": "#1a171b",
         "--input": "#262327",
         "--border": "#4b4b4b",
-        fontFamily:
-          'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif',
         "--text": "#f5f5f5",
       },
+      fullScreen: false,
+      maximized: false,
     };
     fs.writeFileSync(cfgPath, JSON.stringify(defaultCfg, null, 2), "utf8");
     return defaultCfg;
@@ -92,6 +90,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 752,
+    show: false,
     icon: "img/ICT-Logo-Square.png",
     resizable: true,
     autoHideMenuBar: true,
@@ -119,17 +118,39 @@ const createWindow = () => {
     shell.openExternal(url);
   });
 
-  mainWindow.on("enter-full-screen", () => {
-    send("fullscreen-changed", true);
-  });
-
-  mainWindow.on("leave-full-screen", () => {
-    send("fullscreen-changed", false);
-  });
-
   mainWindow.webContents.on("did-finish-load", () => {
     send("config", cfg);
-    send("fullscreen-changed", mainWindow.fullScreen);
+  });
+
+  ["enter-full-screen", "leave-full-screen"].forEach((event) => {
+    mainWindow.on(event, () => {
+      cfg.fullScreen = event == "enter-full-screen";
+      send("fullscreen-changed", cfg.fullScreen);
+      saveConfig();
+    });
+  });
+
+  ["resized", "moved"].forEach((event) => {
+    mainWindow.on(event, saveMainWindowBounds);
+  });
+
+  ["maximize", "unmaximize"].forEach((event) => {
+    mainWindow.on(event, () => {
+      cfg.maximized = event == "maximize";
+      saveConfig();
+    });
+  });
+
+  mainWindow.on("ready-to-show", () => {
+    mainWindow.setFullScreen(cfg.fullScreen);
+    send("fullscreen-changed", cfg.fullScreen);
+    if (cfg?.mainWindowBounds) {
+      mainWindow.setBounds(cfg.mainWindowBounds);
+    }
+    if (cfg.maximized) {
+      mainWindow.maximize();
+    }
+    mainWindow.show();
   });
 
   ipcMain.handle("openSettings", (e) => {
@@ -305,6 +326,13 @@ app.on("window-all-closed", () => {
 function send(channel, payload, target = mainWindow) {
   if (target && !target.isDestroyed()) {
     target.webContents.send(channel, payload);
+  }
+}
+
+function saveMainWindowBounds() {
+  if (mainWindow && !mainWindow.isDestroyed()) {
+    cfg.mainWindowBounds = mainWindow.getBounds();
+    saveConfig();
   }
 }
 
