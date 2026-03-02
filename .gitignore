@@ -95,3 +95,5 @@ out/
 dist/
 
 Thumbs.db
+
+config.json
