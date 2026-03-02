@@ -71,11 +71,9 @@ timerShowMsInput.addEventListener("change", () => {
   window.electronAPI.saveConfig(cfg);
 });
 
-msOpacityInput.addEventListener("focus", () => {
-  window.electronAPI.setOpacity(0.4);
-});
 msOpacityInput.addEventListener("input", (e) => {
   const opacity = e.target.value / 100;
+  window.electronAPI.setOpacity(0.4);
   cfg.timer["--msOpacity"] = opacity;
   window.electronAPI.sendSettingsMessage(cfg);
 });
@@ -84,11 +82,9 @@ msOpacityInput.addEventListener("change", () => {
   window.electronAPI.saveConfig(cfg);
 });
 
-timerSizeInput.addEventListener("focus", () => {
-  window.electronAPI.setOpacity(0.4);
-});
 timerSizeInput.addEventListener("input", (e) => {
   const size = e.target.value;
+  window.electronAPI.setOpacity(0.4);
   cfg.timer["--fontSize"] = `${size}vw`;
   window.electronAPI.sendSettingsMessage(cfg);
 });
